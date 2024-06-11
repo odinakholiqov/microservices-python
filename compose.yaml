@@ -1,0 +1,17 @@
+services:
+  auth:
+    build: ./auth
+    ports:
+      - "5000:5000"
+  gateway:
+    build: ./gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth
+      - rabbitmq
+  rabbitmq:
+    build: ./rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
